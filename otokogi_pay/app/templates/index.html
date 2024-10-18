@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名前入力画面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* フォントファミリーを設定 */
+        }
+        h1 {
+            font-size: 30px;
+        }
+        input[type="text"] {
+            font-size: 30px;
+            padding: 5px;
+            width: 300px;
+        }
+        button {
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>旅行のタイトルと名前を入力してください</h1>
+
+    <div class="input_group">
+        <input type="text" id="tripTitle" placeholder="旅行のタイトル" />
+    </div>
+
+    <div id="nameContainer">
+        <div class="name-input">
+            <input type="text" placeholder="名前を入力" />
+        </div>
+    </div>
+    <button id="addButton">+</button>
+    <button id="submitButton">送信</button>
+
+    <script>
+        const addButton = document.getElementById('addButton');
+        const nameContainer = document.getElementById('nameContainer');
+
+        addButton.addEventListener('click', () => {
+            const newInputDiv = document.createElement('div');
+            newInputDiv.classList.add('name-input');
+            newInputDiv.innerHTML = '<input type="text" placeholder="名前を入力" />';
+            nameContainer.appendChild(newInputDiv);
+        });
+
+        document.getElementByID("submitButton").addEventListener("click", () => {
+            const tripTitle = document.getElementById('tripTitle').value;
+            const nameInputs = nameContainer.getElementsByTagName('input');
+            const names = [];
+            for (let i = 0; i < nameInputs.length; i++) {
+                names.push(nameInputs[i].value);
+            }
+            // 名前とタイトルをURLに渡す
+            const queryString = new URLSearchParams({
+                title: tripTitle,
+                names: JSON.stringify(names)
+            }).toString();
+            window.location.href = 'kingakunyuuryoku.html?' + queryString;
+        });
+    </script>
+</body>
+</html>

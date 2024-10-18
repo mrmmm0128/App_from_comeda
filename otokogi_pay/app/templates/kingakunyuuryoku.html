@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結果</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>旅行のタイトルと名前の一覧</h1>
+    <div id="resultContainer"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const tripTitle = params.get('title');
+        const names = JSON.parse(params.get('names'));
+
+        const resultContainer = document.getElementById('resultContainer');
+        resultContainer.innerHTML = `<h2>タイトル: ${tripTitle}</h2><ul>${names.map(name => `<li>${name}</li>`).join('')}</ul>`;
+    </script>
+</body>
+</html>
