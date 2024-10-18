@@ -49,7 +49,7 @@
             nameContainer.appendChild(newInputDiv);
         });
 
-        document.getElementByID("submitButton").addEventListener("click", () => {
+        document.getElementById("submitButton").addEventListener("click", () => {
             const tripTitle = document.getElementById('tripTitle').value;
             const nameInputs = nameContainer.getElementsByTagName('input');
             const names = [];
