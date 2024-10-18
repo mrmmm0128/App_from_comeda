@@ -4,11 +4,15 @@ from app.seisan import seisan
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    matching = None
+
+    return render_template('index.html')
+
+@app.route('/kingakunyuuryoku.html')
+def kingakunyuuryoku():
 
     if request.method == 'POST':
         pay_dict = request.get_json()
         concequence = seisan(pay_dict)
         return jsonify({"payment":concequence})
 
-    return render_template('base.html')
+    return render_template('kingakunyuuryoku.html')
